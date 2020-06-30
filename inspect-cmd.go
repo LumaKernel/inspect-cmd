@@ -11,6 +11,10 @@ import (
 
 // Dumps bytes like hexdump -C with trimming
 func dump(bytes []byte) string {
+	if len(bytes) == 0 {
+		return "                                                  ||"
+	}
+
 	const threshold = 16
 	b := new(strings.Builder)
 
@@ -30,7 +34,7 @@ func dump(bytes []byte) string {
 }
 
 func main() {
-	fmt.Printf("Args length: %d\n", len(os.Args))
+	fmt.Printf("args length: %d\n", len(os.Args))
 	stat, _ := os.Stdin.Stat()
 	stdinExists := (stat.Mode() & os.ModeCharDevice) == 0
 	var stdin []byte
@@ -38,7 +42,7 @@ func main() {
 		stdin, _ = ioutil.ReadAll(os.Stdin)
 	}
 	for i, arg := range os.Args {
-		fmt.Printf("Args[%d]: %4d bytes %4d runes \n", i, len(arg), utf8.RuneCountInString(arg))
+		fmt.Printf("args[%d]: %4d bytes %4d runes \n", i, len(arg), utf8.RuneCountInString(arg))
 		fmt.Println(dump([]byte(arg)))
 	}
 	fmt.Println()
