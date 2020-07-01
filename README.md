@@ -3,8 +3,7 @@
 Command line that tool tells us the real appearance of inputs.
 
 ```
-$ go get -u github.com/LumaKernel/inspect-cmd
-$ go install github.com/LumaKernel/inspect-cmd
+$ go get github.com/LumaKernel/inspect-cmd
 ```
 
 ```
